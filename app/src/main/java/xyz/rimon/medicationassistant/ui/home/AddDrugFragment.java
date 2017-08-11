@@ -18,8 +18,8 @@ import xyz.rimon.medicationassistant.core.CoreFragment;
  * Created by SAyEM on 8/11/17.
  */
 
-@EFragment(R.layout.fragment_home)
-public class HomeFragment extends CoreFragment {
+@EFragment(R.layout.fragment_add_drug)
+public class AddDrugFragment extends CoreFragment {
     @ViewById
     Button btnAdd;
 

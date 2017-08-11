@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">MedicationAssistant</string>
+    <string name="title_home">প্রচ্ছদ</string>
+    <string name="title_dashboard">ড্যাশবোর্ড</string>
+    <string name="title_notifications">নোটিফিকেশন</string>
+
+    <string-array name="languages">
+        <item>English</item>
+        <item>Bangla</item>
+    </string-array>
+    <string-array name="locales">
+        <item>en</item>
+        <item>bn</item>
+    </string-array>
+
+    <string-array name="spnTimes">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="spnDrugTypes">
+        <item>ট্যাবলেট</item>
+        <item>ক্যাপসুল</item>
+        <item>সিরাপ</item>
+    </string-array>
+
+    <string name="hint.chooseTime">সময়</string>
+
+    <string name="hint.yourName">আপনার নাম</string>
+    <string name="hint.daysToContinue">দিন</string>
+    <string name="hint.yourComment">মন্তব্য</string>
+
+    <string name="label.yourName">আপনার নাম</string>
+    <string name="label.typeOfDrug">ওষুধের ধরন</string>
+    <string name="label.timesInADay">ওষুধটি দিনে কয়বার খেতে হবে?</string>
+    <string name="label.daysToContinue">কতদিন ধরে এ ওষুধটি আপনাকে খেতে হবে?</string>
+    <string name="label.yourComment">আপনার মন্তব্য (যেমন, খাওয়ার আগে/পরে)</string>
+
+    <string name="error.firldEmpty">এই জায়গাটি খালি থাকতে পারবে না</string>
+    <string name="label.addMedicine">ওষুধ যুক্ত করুন</string>
+</resources>
