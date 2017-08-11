@@ -17,15 +17,12 @@ import java.util.Arrays;
 
 import xyz.rimon.medicationassistant.commons.Toaster;
 import xyz.rimon.medicationassistant.components.TimePickersSelector;
+import xyz.rimon.medicationassistant.core.CoreActivity;
+import xyz.rimon.medicationassistant.ui.home.HomeFragment_;
 
 @EActivity(R.layout.activity_main)
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends CoreActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    @ViewById
-    Button btnAdd;
-
-    @ViewById
-    TimePickersSelector tpSelector;
 
     @ViewById
     BottomNavigationView navigationView;
@@ -38,12 +35,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @AfterViews
     void afterViews() {
         this.navigationView.setOnNavigationItemSelectedListener(this);
+
+        loadFragment(HomeFragment_.builder().build());
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.navigation_home:
+                loadFragment(HomeFragment_.builder().build());
                 Toaster.showToast(getApplicationContext(), "Home");
                 return true;
             case R.id.navigation_dashboard:
@@ -56,9 +56,4 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         return false;
     }
 
-
-    @Click
-    void btnAdd() {
-        Toaster.showToast(getApplicationContext(), Arrays.toString(this.tpSelector.getText()));
-    }
 }
