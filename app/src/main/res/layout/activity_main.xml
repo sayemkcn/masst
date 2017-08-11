@@ -10,20 +10,14 @@
     tools:context="xyz.rimon.medicationassistant.MainActivity">
 
     <FrameLayout
-        android:id="@+id/content"
+        android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <xyz.rimon.medicationassistant.components.TimePickersSelector
-            android:id="@+id/timePickerSelector"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </FrameLayout>
+        android:layout_weight="1"
+        android:orientation="vertical" />
 
     <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
+        android:id="@+id/navigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"

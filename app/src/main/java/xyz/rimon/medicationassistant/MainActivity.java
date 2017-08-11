@@ -5,40 +5,55 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
 
-//    private TimePickersSelector tpSelector;
+import java.util.Arrays;
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+import xyz.rimon.medicationassistant.commons.Toaster;
+import xyz.rimon.medicationassistant.components.TimePickersSelector;
+import xyz.rimon.medicationassistant.core.CoreActivity;
+import xyz.rimon.medicationassistant.ui.home.HomeFragment_;
 
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
+@EActivity(R.layout.activity_main)
+public class MainActivity extends CoreActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-                    return true;
-                case R.id.navigation_dashboard:
 
-                    return true;
-                case R.id.navigation_notifications:
-
-                    return true;
-            }
-            return false;
-        }
-
-    };
+    @ViewById
+    BottomNavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    }
 
-//        this.tpSelector = (TimePickersSelector) findViewById(R.id.timePickerSelector);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    @AfterViews
+    void afterViews() {
+        this.navigationView.setOnNavigationItemSelectedListener(this);
+
+        loadFragment(HomeFragment_.builder().build());
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.navigation_home:
+                loadFragment(HomeFragment_.builder().build());
+                Toaster.showToast(getApplicationContext(), "Home");
+                return true;
+            case R.id.navigation_dashboard:
+                Toaster.showToast(getApplicationContext(), "Dashboard");
+                return true;
+            case R.id.navigation_notifications:
+                Toaster.showToast(getApplicationContext(), "Notifications");
+                return true;
+        }
+        return false;
     }
 
 }

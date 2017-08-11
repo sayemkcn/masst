@@ -1,5 +1,6 @@
 package xyz.rimon.medicationassistant.components;
 
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -9,15 +10,22 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TimePicker;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Date;
 
 import xyz.rimon.medicationassistant.R;
+import xyz.rimon.medicationassistant.commons.Logger;
 import xyz.rimon.medicationassistant.commons.Toaster;
+import xyz.rimon.medicationassistant.utils.DateUtil;
 
 /**
  * Created by SAyEM on 8/11/17.
  */
 
-public class TimePickersSelector extends LinearLayout implements AdapterView.OnItemSelectedListener,View.OnClickListener {
+public class TimePickersSelector extends LinearLayout implements AdapterView.OnItemSelectedListener, View.OnClickListener {
     private Spinner spnTimes;
     private LinearLayout linearLayout;
 
@@ -54,9 +62,9 @@ public class TimePickersSelector extends LinearLayout implements AdapterView.OnI
             et.setId(this.generateId(i));
             LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
             et.setLayoutParams(layoutParams);
-            et.setHint(getResources().getString(R.string.hint_chooseTime)+" "+(i+1));
+            et.setHint(getResources().getString(R.string.hint_chooseTime) + " " + (i + 1));
             et.setOnClickListener(this);
-            this.linearLayout.addView(et,i);
+            this.linearLayout.addView(et, i);
         }
     }
 
@@ -72,13 +80,55 @@ public class TimePickersSelector extends LinearLayout implements AdapterView.OnI
     @Override
     public void onClick(View view) {
         int id = view.getId();
-        switch (id){
+        switch (id) {
             case 201:
-                ((EditText)findViewById(201)).setText("Selected");
+                this.showTimePicker((EditText) findViewById(201));
+                break;
+            case 202:
+                this.showTimePicker((EditText) findViewById(202));
+                break;
+            case 203:
+                this.showTimePicker((EditText) findViewById(203));
+                break;
+            case 204:
+                this.showTimePicker((EditText) findViewById(204));
+                break;
+            case 205:
+                this.showTimePicker((EditText) findViewById(205));
                 break;
             default:
-                Toaster.showToast(getContext(),id+"");
+                Toaster.showToast(getContext(), id + "");
                 break;
         }
+    }
+
+    private void showTimePicker(final EditText editText) {
+        TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+                try {
+                    DateFormat timeFormat = DateUtil.getTimeFormat24();
+                    Date time = timeFormat.parse(hour + ":" + minute);
+                    editText.setText(DateUtil.getTimeFormat12().format(time));
+                } catch (ParseException e) {
+                    Logger.e("showTimePicker()", e.toString());
+                }
+            }
+        }, 12, 0, false);
+        timePickerDialog.show();
+    }
+
+    public String[] getText() {
+        int count = Integer.parseInt(this.spnTimes.getSelectedItem().toString());
+        String[] times = new String[count];
+        for (int i = 0; i < count; i++) {
+            EditText et = findViewById(200 + (i + 1));
+            times[i] = et.getText().toString();
+            if (times[i]==null || times[i].isEmpty()) {
+                et.setError(getResources().getString(R.string.error_firldEmpty));
+                return null;
+            }
+        }
+        return times;
     }
 }

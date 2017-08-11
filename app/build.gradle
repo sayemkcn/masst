@@ -19,7 +19,7 @@ android {
         }
     }
 }
-
+def AAVersion = '4.3.0'
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -29,4 +29,8 @@ dependencies {
     compile 'com.android.support:design:26.+'
     compile 'com.android.support:support-vector-drawable:26.+'
     testCompile 'junit:junit:4.12'
+
+    annotationProcessor "org.androidannotations:androidannotations:$AAVersion"
+    compile "org.androidannotations:androidannotations-api:$AAVersion"
+    compile 'org.greenrobot:eventbus:3.0.0'
 }
