@@ -3,6 +3,7 @@ package xyz.rimon.medicationassistant.components;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +20,7 @@ import java.util.Date;
 import xyz.rimon.medicationassistant.R;
 import xyz.rimon.medicationassistant.commons.Logger;
 import xyz.rimon.medicationassistant.commons.Toaster;
-import xyz.rimon.medicationassistant.utils.DateUtil;
+import xyz.rimon.medicationassistant.utils.DateUtils;
 
 /**
  * Created by SAyEM on 8/11/17.
@@ -63,6 +64,8 @@ public class TimePickersSelector extends LinearLayout implements AdapterView.OnI
             LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
             et.setLayoutParams(layoutParams);
             et.setHint(getResources().getString(R.string.hint_chooseTime) + " " + (i + 1));
+            et.setInputType(InputType.TYPE_NULL);
+            et.setOnKeyListener(null);
             et.setOnClickListener(this);
             this.linearLayout.addView(et, i);
         }
@@ -107,9 +110,9 @@ public class TimePickersSelector extends LinearLayout implements AdapterView.OnI
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int minute) {
                 try {
-                    DateFormat timeFormat = DateUtil.getTimeFormat24();
+                    DateFormat timeFormat = DateUtils.getTimeFormat24();
                     Date time = timeFormat.parse(hour + ":" + minute);
-                    editText.setText(DateUtil.getTimeFormat12().format(time));
+                    editText.setText(DateUtils.getTimeFormat12().format(time));
                 } catch (ParseException e) {
                     Logger.e("showTimePicker()", e.toString());
                 }
@@ -124,7 +127,7 @@ public class TimePickersSelector extends LinearLayout implements AdapterView.OnI
         for (int i = 0; i < count; i++) {
             EditText et = findViewById(200 + (i + 1));
             times[i] = et.getText().toString();
-            if (times[i]==null || times[i].isEmpty()) {
+            if (times[i] == null || times[i].isEmpty()) {
                 et.setError(getResources().getString(R.string.error_firldEmpty));
                 return null;
             }

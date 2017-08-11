@@ -1,7 +1,6 @@
 package xyz.rimon.medicationassistant.utils;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -15,7 +14,7 @@ import xyz.rimon.medicationassistant.commons.Toaster;
  * Created by SAyEM on 8/11/17.
  */
 
-public class DateUtil {
+public class DateUtils {
 
     public static DateFormat getTimeFormat24() {
         return new SimpleDateFormat("HH:mm", Locale.US);
@@ -45,7 +44,7 @@ public class DateUtil {
     }
 
     public static Date toDate(Context context, String dateString) {
-        DateFormat sdf = DateUtil.getReadableDateFormat();
+        DateFormat sdf = DateUtils.getReadableDateFormat();
         Date date = null;
         try {
             date = sdf.parse(dateString);
