@@ -29,11 +29,11 @@
 
     <string name="hint.chooseTime">সময়</string>
 
-    <string name="hint.yourName">আপনার নাম</string>
+    <string name="hint.medicineName">ওষুধের নাম</string>
     <string name="hint.daysToContinue">দিন</string>
     <string name="hint.yourComment">মন্তব্য</string>
 
-    <string name="label.yourName">আপনার নাম</string>
+    <string name="label.medicineName">ওষুধের নাম</string>
     <string name="label.typeOfDrug">ওষুধের ধরন</string>
     <string name="label.timesInADay">ওষুধটি দিনে কয়বার খেতে হবে?</string>
     <string name="label.daysToContinue">কতদিন ধরে এ ওষুধটি আপনাকে খেতে হবে?</string>

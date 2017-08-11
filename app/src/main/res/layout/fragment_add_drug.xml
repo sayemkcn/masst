@@ -14,14 +14,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/label.yourName"
+            android:text="@string/label.medicineName"
             android:textColor="@color/colorAccent" />
 
         <EditText
             android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint.yourName" />
+            android:hint="@string/hint.medicineName" />
 
         <TextView
             android:layout_width="match_parent"
