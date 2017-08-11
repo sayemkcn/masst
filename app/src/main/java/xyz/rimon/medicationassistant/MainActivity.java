@@ -16,6 +16,7 @@ import xyz.rimon.medicationassistant.commons.Toaster;
 import xyz.rimon.medicationassistant.commons.helper.LocaleHelper_;
 import xyz.rimon.medicationassistant.core.CoreActivity;
 import xyz.rimon.medicationassistant.ui.home.AddDrugFragment_;
+import xyz.rimon.medicationassistant.ui.home.DrugListFragment_;
 
 @EActivity(R.layout.activity_main)
 public class MainActivity extends CoreActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -33,18 +34,18 @@ public class MainActivity extends CoreActivity implements BottomNavigationView.O
     void afterViews() {
         this.navigationView.setOnNavigationItemSelectedListener(this);
 
-        loadFragment(AddDrugFragment_.builder().build());
+        loadFragment(DrugListFragment_.builder().build());
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.navigation_home:
-                loadFragment(AddDrugFragment_.builder().build());
+                loadFragment(DrugListFragment_.builder().build());
                 Toaster.showToast(getApplicationContext(), "Home");
                 return true;
             case R.id.navigation_dashboard:
-                Toaster.showToast(getApplicationContext(), "Dashboard");
+                loadChildFragment(AddDrugFragment_.builder().build());
                 return true;
             case R.id.navigation_notifications:
                 Toaster.showToast(getApplicationContext(), "Notifications");

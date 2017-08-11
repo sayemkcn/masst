@@ -41,4 +41,7 @@
 
     <string name="error.firldEmpty">এই জায়গাটি খালি থাকতে পারবে না</string>
     <string name="label.addMedicine">ওষুধ যুক্ত করুন</string>
+    <string name="msg.timesADay">বার প্রতিদিন</string>
+    <string name="msg.forDays">দিনের জন্য</string>
+    <string name="msg.drugAdded">ওষুধ যুক্ত করা হয়েছে</string>
 </resources>

@@ -41,4 +41,7 @@
 
     <string name="error.firldEmpty">Field can not be empty!</string>
     <string name="label.addMedicine">Add Medicine</string>
+    <string name="msg.timesADay">times a day for</string>
+    <string name="msg.forDays">days</string>
+    <string name="msg.drugAdded">Drug Added</string>
 </resources>

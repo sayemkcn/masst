@@ -17,6 +17,7 @@ import xyz.rimon.medicationassistant.R;
 import xyz.rimon.medicationassistant.commons.Toaster;
 import xyz.rimon.medicationassistant.commons.Validator;
 import xyz.rimon.medicationassistant.components.TimePickersSelector;
+import xyz.rimon.medicationassistant.core.CoreActivity;
 import xyz.rimon.medicationassistant.core.CoreFragment;
 import xyz.rimon.medicationassistant.domains.Drug;
 import xyz.rimon.medicationassistant.events.DrugAddedEvent;
@@ -70,8 +71,9 @@ public class AddDrugFragment extends CoreFragment {
 
 
     @Subscribe
-    public void onDrugAdded(DrugAddedEvent event){
-        Toaster.showToast(getContext(),event.toString());
+    public void onDrugAdded(DrugAddedEvent event) {
+        ((CoreActivity) getActivity()).loadFragment(DrugListFragment_.builder().build());
+        Toaster.showToast(getContext(), getResources().getString(R.string.msg_drugAdded));
     }
 
 }

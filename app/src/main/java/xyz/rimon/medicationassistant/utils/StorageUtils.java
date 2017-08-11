@@ -34,6 +34,7 @@ import xyz.rimon.medicationassistant.domains.Drug;
 
 public class StorageUtils {
 
+    private static String PATH = "/MedAssistant";
     private static final String TAG = "StorageUtils";
 
     public static final String ALL_DRUGS_FILE = "all.m";
@@ -62,7 +63,7 @@ public class StorageUtils {
         boolean storageAvailable = storageAvailable(activity);
         if (!storageAvailable) {
             activity.finish();
-            Toaster.showToast(activity,"Insufficient storage!");
+            Toaster.showToast(activity, "Insufficient storage!");
         }
         return storageAvailable;
     }
@@ -84,22 +85,22 @@ public class StorageUtils {
         return availableBlocks * blockSize;
     }
 
-    public static String getCmedDirPath() {
+    public static String getStorageDirPath() {
         File rootPath = Environment.getExternalStorageDirectory();
-        File cmedDir = new File(rootPath.getAbsolutePath() + "/cmedhealth");
+        File cmedDir = new File(rootPath.getAbsolutePath() + StorageUtils.PATH);
         if (!cmedDir.exists()) cmedDir.mkdirs();
         return cmedDir.getAbsolutePath();
     }
 
-    public static String getCmedReportDirPath() {
-        File reportDir = new File(getCmedDirPath() + "/reports");
+    public static String getStorageReportDirPath() {
+        File reportDir = new File(getStorageDirPath() + "/reports");
         if (!reportDir.exists()) reportDir.mkdirs();
         return reportDir.getAbsolutePath();
     }
 
     public static void writeObjects(String fileName, List<Drug> drugList) {
         File rootPath = Environment.getExternalStorageDirectory();
-        File cmedDir = new File(rootPath.getAbsolutePath() + "/cmedhealth");
+        File cmedDir = new File(rootPath.getAbsolutePath() + StorageUtils.PATH);
         if (!cmedDir.exists()) cmedDir.mkdirs();
         File measurementsFile = new File(cmedDir, fileName);
         FileOutputStream fos = null;
@@ -124,7 +125,7 @@ public class StorageUtils {
     public static List<Drug> readObjects(String fileName) {
         List<Drug> drugList = new ArrayList<>();
         File rootPath = Environment.getExternalStorageDirectory();
-        File cmedDir = new File(rootPath.getAbsolutePath() + "/cmedhealth");
+        File cmedDir = new File(rootPath.getAbsolutePath() + StorageUtils.PATH);
         if (!cmedDir.exists()) cmedDir.mkdirs();
         File measurementsFile = new File(cmedDir, fileName);
         FileInputStream fis = null;
