@@ -5,40 +5,58 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.Arrays;
 
-//    private TimePickersSelector tpSelector;
+import xyz.rimon.medicationassistant.commons.Toaster;
+import xyz.rimon.medicationassistant.components.TimePickersSelector;
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
+    Button btnAdd;
 
-                    return true;
-                case R.id.navigation_dashboard:
+    private TimePickersSelector tpSelector;
 
-                    return true;
-                case R.id.navigation_notifications:
-
-                    return true;
-            }
-            return false;
-        }
-
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        this.tpSelector = (TimePickersSelector) findViewById(R.id.timePickerSelector);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.setOnNavigationItemSelectedListener(this);
+
+        this.tpSelector = (TimePickersSelector) findViewById(R.id.timePickerSelector);
+        btnAdd = (Button) findViewById(R.id.btnAdd);
+        btnAdd.setOnClickListener(this);
+
     }
 
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.navigation_home:
+
+                return true;
+            case R.id.navigation_dashboard:
+
+                return true;
+            case R.id.navigation_notifications:
+
+                return true;
+        }
+        return false;
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+        if (id == R.id.btnAdd) {
+            Toaster.showToast(getApplicationContext(), Arrays.toString(this.tpSelector.getText()));
+        }
+    }
 }
