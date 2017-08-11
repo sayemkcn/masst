@@ -20,7 +20,7 @@ import java.util.Date;
 import xyz.rimon.medicationassistant.R;
 import xyz.rimon.medicationassistant.commons.Logger;
 import xyz.rimon.medicationassistant.commons.Toaster;
-import xyz.rimon.medicationassistant.utils.DateUtil;
+import xyz.rimon.medicationassistant.utils.DateUtils;
 
 /**
  * Created by SAyEM on 8/11/17.
@@ -110,9 +110,9 @@ public class TimePickersSelector extends LinearLayout implements AdapterView.OnI
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int minute) {
                 try {
-                    DateFormat timeFormat = DateUtil.getTimeFormat24();
+                    DateFormat timeFormat = DateUtils.getTimeFormat24();
                     Date time = timeFormat.parse(hour + ":" + minute);
-                    editText.setText(DateUtil.getTimeFormat12().format(time));
+                    editText.setText(DateUtils.getTimeFormat12().format(time));
                 } catch (ParseException e) {
                     Logger.e("showTimePicker()", e.toString());
                 }
