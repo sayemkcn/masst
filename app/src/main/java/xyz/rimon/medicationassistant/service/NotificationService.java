@@ -11,13 +11,17 @@ import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import xyz.rimon.medicationassistant.MainActivity_;
 import xyz.rimon.medicationassistant.R;
+import xyz.rimon.medicationassistant.commons.Commons;
 import xyz.rimon.medicationassistant.commons.Logger;
 import xyz.rimon.medicationassistant.domains.Drug;
 import xyz.rimon.medicationassistant.utils.DateUtils;
+import xyz.rimon.medicationassistant.utils.StorageUtils;
 
 /**
  * Created by SAyEM on 8/12/17.
@@ -40,7 +44,10 @@ public class NotificationService extends Service {
                     while (System.currentTimeMillis() < System.currentTimeMillis() + 1000 * 60) {
                         synchronized (this) {
                             try {
-                                Logger.i("SERVICE", DateUtils.getTimeFormat12().format(new Date()));
+                                List<Drug> drugList = Commons.getMatchedDrugs();
+                                if (!drugList.isEmpty()) {
+                                    showNotification(drugList);
+                                }
                                 Thread.sleep(1000 * 60);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
@@ -58,17 +65,17 @@ public class NotificationService extends Service {
         return Service.START_STICKY;
     }
 
-    private void showEventNotification(Drug drug) {
+    private void showNotification(List<Drug> drugList) {
         NotificationCompat.Builder notiBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle(drug.getName())
-                .setContentText(drug.getComment())
+                .setContentTitle(getResources().getString(R.string.msg_medicationTime))
+                .setContentText(Commons.getDrugNamesString(drugList) + " " + getResources().getString(R.string.msg_needsToTake))
                 .setAutoCancel(true);
 
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         notiBuilder.setSound(alarmSound);
         Intent resultIntent = new Intent(this, MainActivity_.class);
-        resultIntent.putExtra("event", drug);
+//        resultIntent.putExtra("event", drug);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
         stackBuilder.addParentStack(MainActivity_.class);
 
@@ -122,6 +129,5 @@ public class NotificationService extends Service {
         // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
-
 
 }
