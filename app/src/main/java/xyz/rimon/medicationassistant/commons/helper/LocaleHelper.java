@@ -25,6 +25,10 @@ public class LocaleHelper {
     @RootContext
     Context context;
 
+    public static String LOCALE_BN = "bn";
+    public static String LOCALE_EN = "en";
+
+
     public void onCreate() {
         String lang = getPersistedData();
         setLocale(lang);
