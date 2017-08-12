@@ -1,6 +1,7 @@
 package xyz.rimon.medicationassistant;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -13,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
@@ -22,6 +24,7 @@ import xyz.rimon.medicationassistant.commons.helper.LocaleHelper;
 import xyz.rimon.medicationassistant.commons.helper.LocaleHelper_;
 import xyz.rimon.medicationassistant.commons.prefs.DroidPrefs_;
 import xyz.rimon.medicationassistant.core.CoreActivity;
+import xyz.rimon.medicationassistant.service.NotificationService;
 import xyz.rimon.medicationassistant.ui.home.AddDrugFragment_;
 import xyz.rimon.medicationassistant.ui.home.DrugListFragment_;
 
@@ -60,6 +63,9 @@ public class MainActivity extends CoreActivity implements BottomNavigationView.O
 
         this.navigationView.setOnNavigationItemSelectedListener(this);
 
+        // Start Notification Service
+        Intent intent = new Intent(this, NotificationService.class);
+        startService(intent);
 //        loadFragment(DrugListFragment_.builder().build());
     }
 
@@ -91,7 +97,11 @@ public class MainActivity extends CoreActivity implements BottomNavigationView.O
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
-
+//
+//    @Background
+//    public void background() {
+//        startService(new Intent(this, NotificationService.class));
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

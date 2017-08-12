@@ -19,7 +19,7 @@ public class DrugUpdatedEvent {
 
     @Override
     public String toString() {
-        return "DrugAddedEvent{" +
+        return "DrugUpdatedEvent{" +
                 "drug=" + drug +
                 '}';
     }

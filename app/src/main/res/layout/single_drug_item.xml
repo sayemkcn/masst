@@ -41,5 +41,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
-        android:text="Alert" />
+        android:text="@string/label.alert" />
 </LinearLayout>
