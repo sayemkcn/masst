@@ -60,17 +60,16 @@ public class MainActivity extends CoreActivity implements BottomNavigationView.O
 
         this.navigationView.setOnNavigationItemSelectedListener(this);
 
-        loadFragment(DrugListFragment_.builder().build());
+//        loadFragment(DrugListFragment_.builder().build());
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.navigation_home:
-                loadFragment(DrugListFragment_.builder().build());
                 return true;
-            case R.id.navigation_dashboard:
-                loadChildFragment(AddDrugFragment_.builder().build());
+            case R.id.navigation_druglist:
+                loadFragment(DrugListFragment_.builder().build());
                 return true;
             case R.id.navigation_notifications:
                 return true;
@@ -94,27 +93,18 @@ public class MainActivity extends CoreActivity implements BottomNavigationView.O
     }
 
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
-//        if (id == R.id.menu_language) {
-//            new AlertDialog.Builder(this)
-//                    .setItems(R.array.languages, new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialogInterface, int i) {
-//                            String[] locales = getResources().getStringArray(R.array.locales);
-//                            LocaleHelper_.getInstance_(getApplicationContext()).setLocale(locales[i]);
-//                            MainActivity.this.recreate();
-//                        }
-//                    })
-//                    .show();
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menu_add) {
+            loadChildFragment(AddDrugFragment_.builder().build());
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

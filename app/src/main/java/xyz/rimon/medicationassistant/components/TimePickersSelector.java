@@ -128,7 +128,7 @@ public class TimePickersSelector extends LinearLayout implements AdapterView.OnI
             EditText et = findViewById(200 + (i + 1));
             times[i] = et.getText().toString();
             if (times[i] == null || times[i].isEmpty()) {
-                et.setError(getResources().getString(R.string.error_firldEmpty));
+                et.setError(getResources().getString(R.string.error_fieldEmpty));
                 return null;
             }
         }

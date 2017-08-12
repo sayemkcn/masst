@@ -17,7 +17,7 @@ public class Validator {
     public static boolean isValid(Context context, EditText et) {
         if (et == null) return false;
         if (et.getText().toString().isEmpty()) {
-            et.setError(context.getResources().getString(R.string.error_firldEmpty));
+            et.setError(context.getResources().getString(R.string.error_fieldEmpty));
             return false;
         }
         return true;

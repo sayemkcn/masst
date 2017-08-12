@@ -9,13 +9,18 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
 import xyz.rimon.medicationassistant.R;
 import xyz.rimon.medicationassistant.core.CoreActivity;
 import xyz.rimon.medicationassistant.domains.Drug;
+import xyz.rimon.medicationassistant.events.DrugUpdatedEvent;
 import xyz.rimon.medicationassistant.ui.home.AddDrugFragment_;
 import xyz.rimon.medicationassistant.utils.StorageUtils;
 
@@ -51,6 +56,7 @@ public class DrugListAdapter extends RecyclerView.Adapter<DrugListAdapter.MyView
                 + drug.getDaysCount()
                 + " "
                 + context.getResources().getString(R.string.msg_forDays));
+        holder.alertSwitch.setChecked(drug.isAlert());
     }
 
     @Override
@@ -63,13 +69,16 @@ public class DrugListAdapter extends RecyclerView.Adapter<DrugListAdapter.MyView
         TextView tvDrugName;
         TextView tvTag;
         TextView tvComment;
+        Switch alertSwitch;
 
         MyViewHolder(final View itemView) {
             super(itemView);
             tvDrugName = itemView.findViewById(R.id.tvDrugName);
             tvTag = itemView.findViewById(R.id.tvTag);
             tvComment = itemView.findViewById(R.id.tvComment);
+            alertSwitch = itemView.findViewById(R.id.alertSwitch);
 
+            // item long press action
             final String[] options = {"Edit", "Delete"};
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -89,6 +98,18 @@ public class DrugListAdapter extends RecyclerView.Adapter<DrugListAdapter.MyView
                             })
                             .show();
                     return false;
+                }
+            });
+
+            alertSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean alert) {
+                    Drug drug = drugList.get(getAdapterPosition());
+                    drug.setAlert(alert);
+                    drugList.remove(getAdapterPosition());
+                    drugList.add(getAdapterPosition(), drug);
+                    StorageUtils.writeObjects(StorageUtils.ALL_DRUGS_FILE, drugList);
+                    EventBus.getDefault().post(new DrugUpdatedEvent(drug));
                 }
             });
         }
