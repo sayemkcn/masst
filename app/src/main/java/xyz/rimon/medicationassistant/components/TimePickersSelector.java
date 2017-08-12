@@ -121,7 +121,7 @@ public class TimePickersSelector extends LinearLayout implements AdapterView.OnI
         timePickerDialog.show();
     }
 
-    public String[] getText() {
+    public String[] getData() {
         int count = Integer.parseInt(this.spnTimes.getSelectedItem().toString());
         String[] times = new String[count];
         for (int i = 0; i < count; i++) {
@@ -133,5 +133,19 @@ public class TimePickersSelector extends LinearLayout implements AdapterView.OnI
             }
         }
         return times;
+    }
+
+    public void setData(String[] data) {
+        String[] spnTimesArray = getResources().getStringArray(R.array.spnTimes);
+        for (int i = 0; i < spnTimesArray.length; i++) {
+            // init spinner
+            if (data.length == Integer.parseInt(spnTimesArray[i]))
+                this.spnTimes.setSelection(i);
+            // init textviews
+//            int id = this.generateId(i);
+//            EditText et = this.linearLayout.findViewById(id);
+//            et.setText(data[i]);
+        }
+
     }
 }

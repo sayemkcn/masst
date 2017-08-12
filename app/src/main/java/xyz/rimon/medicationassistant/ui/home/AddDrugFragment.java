@@ -7,11 +7,13 @@ import android.widget.Spinner;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.Arrays;
+import java.util.List;
 
 import xyz.rimon.medicationassistant.R;
 import xyz.rimon.medicationassistant.commons.Toaster;
@@ -47,14 +49,37 @@ public class AddDrugFragment extends CoreFragment {
     @ViewById
     TimePickersSelector tpSelector;
 
+    @FragmentArg
+    boolean isEdit;
+
+    @FragmentArg
+    int position;
+
     @AfterViews
     void afterViews() {
+        if (isEdit)
+            initData();
+    }
 
+    private void initData() {
+        List<Drug> drugList = StorageUtils.readObjects(StorageUtils.ALL_DRUGS_FILE);
+        Drug drug = drugList.get(position);
+
+        this.etName.setText(drug.getName());
+        this.etDays.setText(String.valueOf(drug.getDaysCount()));
+        this.etComment.setText(drug.getComment());
+        // init drug type spinner
+        String[] drugType = getResources().getStringArray(R.array.spnDrugTypes);
+        for (int i = 0; i < drugType.length; i++)
+            if (drug.getType().equals(drugType[i]))
+                this.spnType.setSelection(i);
+        // init timpickerselector custom component
+        this.tpSelector.setData(drug.getTimes());
     }
 
     @Click
     void btnAdd() {
-        if (tpSelector.getText() == null ||
+        if (tpSelector.getData() == null ||
                 !Validator.isValid(getContext(), etName) ||
                 !Validator.isValid(getContext(), etDays) ||
                 !Validator.isValid(getContext(), etComment))
@@ -62,10 +87,13 @@ public class AddDrugFragment extends CoreFragment {
 
         Drug drug = new Drug(etName.getText().toString(),
                 spnType.getSelectedItem().toString(),
-                tpSelector.getText(),
+                tpSelector.getData(),
                 Integer.parseInt(etDays.getText().toString()),
                 etComment.getText().toString());
-        StorageUtils.writeObject(StorageUtils.ALL_DRUGS_FILE, drug);
+        if (isEdit)
+            StorageUtils.writeObject(StorageUtils.ALL_DRUGS_FILE, drug, position);
+        else
+            StorageUtils.writeObject(StorageUtils.ALL_DRUGS_FILE, drug);
         EventBus.getDefault().post(new DrugAddedEvent(drug));
     }
 
