@@ -158,6 +158,16 @@ public class StorageUtils {
         Log.i("OFFLINE_MEASUREMENTS", String.valueOf(drugList.size()));
     }
 
+    public static void writeObject(String fileName, Drug drug, int position) {
+        List<Drug> drugList = StorageUtils.readObjects(fileName);
+        if (drugList == null)
+            drugList = new ArrayList<>();
+        drugList.remove(position);
+        drugList.add(position, drug);
+        StorageUtils.writeObjects(fileName, drugList);
+        Log.i("OFFLINE_MEASUREMENTS", String.valueOf(drugList.size()));
+    }
+
     public static void openFileIntent(Context context, String dir, String fileName) {
         File file = new File(dir + "/" + fileName);
 

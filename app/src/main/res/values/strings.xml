@@ -6,7 +6,7 @@
 
     <string-array name="languages">
         <item>English</item>
-        <item>Bangla</item>
+        <item>বাংলা</item>
     </string-array>
     <string-array name="locales">
         <item>en</item>

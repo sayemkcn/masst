@@ -6,26 +6,26 @@
 
     <string-array name="languages">
         <item>English</item>
-        <item>Bangla</item>
+        <item>বাংলা</item>
     </string-array>
     <string-array name="locales">
         <item>en</item>
         <item>bn</item>
     </string-array>
 
-    <string-array name="spnTimes">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-    </string-array>
+    <!--<string-array name="spnTimes">-->
+        <!--<item>1</item>-->
+        <!--<item>2</item>-->
+        <!--<item>3</item>-->
+        <!--<item>4</item>-->
+        <!--<item>5</item>-->
+    <!--</string-array>-->
 
-    <string-array name="spnDrugTypes">
-        <item>ট্যাবলেট</item>
-        <item>ক্যাপসুল</item>
-        <item>সিরাপ</item>
-    </string-array>
+    <!--<string-array name="spnDrugTypes">-->
+        <!--<item>ট্যাবলেট</item>-->
+        <!--<item>ক্যাপসুল</item>-->
+        <!--<item>সিরাপ</item>-->
+    <!--</string-array>-->
 
     <string name="hint.chooseTime">সময়</string>
 
