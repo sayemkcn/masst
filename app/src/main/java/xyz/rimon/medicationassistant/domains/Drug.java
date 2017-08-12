@@ -13,6 +13,7 @@ public class Drug implements Serializable {
     private String[] times;
     private int daysCount;
     private String comment;
+    private boolean alert;
 
     public Drug() {
     }
@@ -66,6 +67,14 @@ public class Drug implements Serializable {
         this.comment = comment;
     }
 
+    public boolean isAlert() {
+        return alert;
+    }
+
+    public void setAlert(boolean alert) {
+        this.alert = alert;
+    }
+
     @Override
     public String toString() {
         return "Drug{" +
@@ -74,6 +83,7 @@ public class Drug implements Serializable {
                 ", times=" + Arrays.toString(times) +
                 ", daysCount=" + daysCount +
                 ", comment='" + comment + '\'' +
+                ", alert=" + alert +
                 '}';
     }
 }

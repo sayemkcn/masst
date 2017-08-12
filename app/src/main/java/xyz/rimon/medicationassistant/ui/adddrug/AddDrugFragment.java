@@ -1,6 +1,7 @@
-package xyz.rimon.medicationassistant.ui.home;
+package xyz.rimon.medicationassistant.ui.adddrug;
 
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -23,6 +24,7 @@ import xyz.rimon.medicationassistant.core.CoreActivity;
 import xyz.rimon.medicationassistant.core.CoreFragment;
 import xyz.rimon.medicationassistant.domains.Drug;
 import xyz.rimon.medicationassistant.events.DrugAddedEvent;
+import xyz.rimon.medicationassistant.ui.druglist.DrugListFragment_;
 import xyz.rimon.medicationassistant.utils.StorageUtils;
 
 /**
@@ -47,6 +49,9 @@ public class AddDrugFragment extends CoreFragment {
     EditText etComment;
 
     @ViewById
+    CheckBox ckAlert;
+
+    @ViewById
     TimePickersSelector tpSelector;
 
     @FragmentArg
@@ -68,6 +73,7 @@ public class AddDrugFragment extends CoreFragment {
         this.etName.setText(drug.getName());
         this.etDays.setText(String.valueOf(drug.getDaysCount()));
         this.etComment.setText(drug.getComment());
+        this.ckAlert.setChecked(drug.isAlert());
         // init drug type spinner
         String[] drugType = getResources().getStringArray(R.array.spnDrugTypes);
         for (int i = 0; i < drugType.length; i++)
@@ -90,6 +96,9 @@ public class AddDrugFragment extends CoreFragment {
                 tpSelector.getData(),
                 Integer.parseInt(etDays.getText().toString()),
                 etComment.getText().toString());
+        // set alert
+        drug.setAlert(this.ckAlert.isChecked());
+
         if (isEdit)
             StorageUtils.writeObject(StorageUtils.ALL_DRUGS_FILE, drug, position);
         else

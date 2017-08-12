@@ -1,4 +1,4 @@
-package xyz.rimon.medicationassistant.ui.home;
+package xyz.rimon.medicationassistant.ui.druglist;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -6,14 +6,13 @@ import android.support.v7.widget.RecyclerView;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
-
-import java.util.List;
+import org.greenrobot.eventbus.Subscribe;
 
 import xyz.rimon.medicationassistant.R;
 import xyz.rimon.medicationassistant.commons.Logger;
 import xyz.rimon.medicationassistant.core.CoreFragment;
-import xyz.rimon.medicationassistant.domains.Drug;
-import xyz.rimon.medicationassistant.ui.home.adapter.DrugListAdapter;
+import xyz.rimon.medicationassistant.events.DrugUpdatedEvent;
+import xyz.rimon.medicationassistant.ui.druglist.adapter.DrugListAdapter;
 import xyz.rimon.medicationassistant.utils.StorageUtils;
 
 /**
@@ -33,5 +32,10 @@ public class DrugListFragment extends CoreFragment {
     private void setupRecyclerView() {
         this.drugListRecyclerView.setAdapter(new DrugListAdapter(getActivity(), StorageUtils.readObjects(StorageUtils.ALL_DRUGS_FILE)));
         this.drugListRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    }
+
+    @Subscribe
+    public void onDrugUpdated(DrugUpdatedEvent event) {
+        Logger.i("onDrugUpdated()", event.toString());
     }
 }
