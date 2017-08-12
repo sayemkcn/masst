@@ -25,8 +25,9 @@ import xyz.rimon.medicationassistant.commons.helper.LocaleHelper_;
 import xyz.rimon.medicationassistant.commons.prefs.DroidPrefs_;
 import xyz.rimon.medicationassistant.core.CoreActivity;
 import xyz.rimon.medicationassistant.service.NotificationService;
-import xyz.rimon.medicationassistant.ui.home.AddDrugFragment_;
-import xyz.rimon.medicationassistant.ui.home.DrugListFragment_;
+import xyz.rimon.medicationassistant.ui.adddrug.AddDrugFragment_;
+import xyz.rimon.medicationassistant.ui.druglist.DrugListFragment_;
+import xyz.rimon.medicationassistant.ui.home.HomeFragment_;
 
 @EActivity(R.layout.activity_main)
 public class MainActivity extends CoreActivity implements BottomNavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemSelectedListener {
@@ -66,16 +67,17 @@ public class MainActivity extends CoreActivity implements BottomNavigationView.O
         // Start Notification Service
         Intent intent = new Intent(this, NotificationService.class);
         startService(intent);
-//        loadFragment(DrugListFragment_.builder().build());
+        loadFragment(HomeFragment_.builder().build());
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.navigation_home:
+                loadFragment(HomeFragment_.builder().build());
                 return true;
             case R.id.navigation_druglist:
-                loadFragment(DrugListFragment_.builder().build());
+                loadChildFragment(DrugListFragment_.builder().build());
                 return true;
             case R.id.navigation_notifications:
                 return true;

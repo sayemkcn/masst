@@ -1,4 +1,4 @@
-package xyz.rimon.medicationassistant.ui.home;
+package xyz.rimon.medicationassistant.ui.adddrug;
 
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -24,6 +24,7 @@ import xyz.rimon.medicationassistant.core.CoreActivity;
 import xyz.rimon.medicationassistant.core.CoreFragment;
 import xyz.rimon.medicationassistant.domains.Drug;
 import xyz.rimon.medicationassistant.events.DrugAddedEvent;
+import xyz.rimon.medicationassistant.ui.druglist.DrugListFragment_;
 import xyz.rimon.medicationassistant.utils.StorageUtils;
 
 /**
