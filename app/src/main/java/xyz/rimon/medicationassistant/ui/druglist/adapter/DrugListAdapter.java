@@ -54,6 +54,7 @@ public class DrugListAdapter extends RecyclerView.Adapter<DrugListAdapter.MyView
                 + drug.getDaysCount()
                 + " "
                 + context.getResources().getString(R.string.msg_forDays));
+        holder.tvComment.setText(drug.getComment());
         holder.alertSwitch.setChecked(drug.isAlert());
     }
 
@@ -88,9 +89,19 @@ public class DrugListAdapter extends RecyclerView.Adapter<DrugListAdapter.MyView
                                     if (i == 0) {
                                         ((CoreActivity) context).loadChildFragment(AddDrugFragment_.builder().isEdit(true).position(getAdapterPosition()).build());
                                     } else if (i == 1) {
-                                        drugList.remove(getAdapterPosition());
-                                        StorageUtils.writeObjects(StorageUtils.ALL_DRUGS_FILE, drugList);
-                                        notifyDataSetChanged();
+                                        new AlertDialog.Builder(context)
+                                                .setMessage(R.string.msg_confirmation)
+                                                .setPositiveButton(R.string.label_yes, new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                                                        drugList.remove(getAdapterPosition());
+                                                        StorageUtils.writeObjects(StorageUtils.ALL_DRUGS_FILE, drugList);
+                                                        notifyDataSetChanged();
+                                                    }
+                                                })
+                                                .setNegativeButton(R.string.label_no, null)
+                                                .show();
                                     }
                                 }
                             })

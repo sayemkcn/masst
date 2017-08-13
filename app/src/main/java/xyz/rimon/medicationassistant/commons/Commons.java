@@ -24,7 +24,7 @@ public class Commons {
             for (int j = 0; j < drug.getTimes().length; j++) {
                 if (drug.getTimes()[j].equals(DateUtils.getTimeFormat12().format(new Date()))) {
                     // check if alert enabled
-                    if (drug.isAlert())
+                    if (drug.isAlert() && !drug.isMedicationOver())
                         newList.add(drug);
                 }
             }

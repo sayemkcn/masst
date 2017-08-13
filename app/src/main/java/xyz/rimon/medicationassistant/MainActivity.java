@@ -67,6 +67,7 @@ public class MainActivity extends CoreActivity implements BottomNavigationView.O
         // Start Notification Service
         Intent intent = new Intent(this, NotificationService.class);
         startService(intent);
+
         loadFragment(HomeFragment_.builder().build());
     }
 
@@ -79,7 +80,8 @@ public class MainActivity extends CoreActivity implements BottomNavigationView.O
             case R.id.navigation_druglist:
                 loadChildFragment(DrugListFragment_.builder().build());
                 return true;
-            case R.id.navigation_notifications:
+            case R.id.navigation_add_med:
+                loadChildFragment(AddDrugFragment_.builder().build());
                 return true;
         }
         return false;

@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">MedicationAssistant</string>
+    <string name="app_name">MedAss</string>
     <string name="title_home">Home</string>
     <string name="title_druglist">Medicines</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_add_med">Add Medicine</string>
 
     <string-array name="languages">
         <item>English</item>
@@ -38,8 +38,12 @@
     <string name="label.timesInADay">How many times you\'ve to take in a day?</string>
     <string name="label.daysToContinue">How many days you\'ve to continue this medication?</string>
     <string name="label.yourComment">Your comment (like before/after meal etc.)</string>
+    <string name="label.note">Your note</string>
     <string name="label.addMedicine">Add Medicine</string>
     <string name="label.alert">Alert</string>
+    <string name="label.upcomingMed">Upcoming Medications</string>
+    <string name="label.yes">হ্যাঁ</string>
+    <string name="label.no">না</string>
 
     <string name="error.fieldEmpty">Field can not be empty!</string>
 
@@ -49,4 +53,8 @@
     <string name="msg.alert">Give me alert for this medication</string>
     <string name="msg.medicationTime">It\'s time for medication</string>
     <string name="msg.needsToTake">needs to be taken now.</string>
+    <string name="msg.isTheTimeForMedication">is the very next time for this medication.</string>
+    <string name="msg.confirmation">Are you sure?</string>
+    <string name="msg.noContent">Nothing to show yet!</string>
+    <string name="msg.noContentSuggestion">No medicine is added yet. Add medications to see how it works!</string>
 </resources>
