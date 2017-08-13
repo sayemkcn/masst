@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/menu_add"
-        android:icon="@android:drawable/ic_input_add"
+        android:icon="@mipmap/ic_add_circle_outline_white_24dp"
         android:title="@string/label.addMedicine"
         app:showAsAction="always" />
 </menu>

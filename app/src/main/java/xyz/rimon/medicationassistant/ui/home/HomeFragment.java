@@ -2,6 +2,8 @@ package xyz.rimon.medicationassistant.ui.home;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.TextView;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -29,9 +31,16 @@ public class HomeFragment extends CoreFragment {
     @ViewById
     RecyclerView upcomingMedRecyclerView;
 
+    @ViewById
+    TextView txtNoItem;
+
     @AfterViews
     void afterViews() {
         List<Drug> drugList = this.getUpcomingMedications(StorageUtils.readObjects(StorageUtils.ALL_DRUGS_FILE));
+        if (drugList != null && !drugList.isEmpty()) {
+            this.txtNoItem.setVisibility(View.GONE);
+            this.upcomingMedRecyclerView.setVisibility(View.VISIBLE);
+        }
         upcomingMedRecyclerView.setAdapter(new HomeAdapter(getActivity(), drugList));
         upcomingMedRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }

@@ -51,19 +51,24 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
         Drug drug = this.drugList.get(position);
         holder.tvDrugName.setText(drug.getType() + " " + drug.getName());
         try {
-            holder.tvTime.setText(drug.getNextTime() + " " + context.getResources().getString(R.string.isTheTimeForMedication));
+            holder.tvTime.setText(drug.getNextTime() + " " + context.getResources().getString(R.string.msg_isTheTimeForMedication));
         } catch (ParseException e) {
             Logger.e("HomeAdaperOnBindViewHoler", e.toString());
         }
 
         holder.tvComment.setText(drug.getComment());
 
-        if (drug.getType().equals(Drug.Type.TYPE_TABLET))
-            holder.imgIcon.setImageResource(R.mipmap.ic_tablet);
-        else if (drug.getType().equals(Drug.Type.TYPE_CAPSULE))
-            holder.imgIcon.setImageResource(R.mipmap.ic_capsule);
-        else if (drug.getType().equals(Drug.Type.TYPE_SYRUP))
-            holder.imgIcon.setImageResource(R.mipmap.ic_syrup);
+        switch (drug.getType()) {
+            case Drug.Type.TYPE_TABLET:
+                holder.imgIcon.setImageResource(R.mipmap.ic_tablet);
+                break;
+            case Drug.Type.TYPE_CAPSULE:
+                holder.imgIcon.setImageResource(R.mipmap.ic_capsule);
+                break;
+            case Drug.Type.TYPE_SYRUP:
+                holder.imgIcon.setImageResource(R.mipmap.ic_syrup);
+                break;
+        }
     }
 
     @Override

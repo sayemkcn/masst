@@ -5,15 +5,14 @@
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/title_home" />
+    <item
+        android:id="@+id/navigation_add_med"
+        android:icon="@mipmap/ic_add_circle_outline_white_24dp"
+        android:title="@string/title_add_med" />
 
     <item
         android:id="@+id/navigation_druglist"
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="@string/title_druglist" />
-
-    <item
-        android:id="@+id/navigation_notifications"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_notifications" />
 
 </menu>

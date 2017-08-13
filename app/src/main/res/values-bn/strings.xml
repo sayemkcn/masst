@@ -2,7 +2,7 @@
     <string name="app_name">MedicationAssistant</string>
     <string name="title_home">প্রচ্ছদ</string>
     <string name="title_druglist">ওষুধগুলো</string>
-    <string name="title_notifications">নোটিফিকেশন</string>
+    <string name="title_add_med">নতুন ওষুধ</string>
 
     <string-array name="languages">
         <item>English</item>
@@ -38,16 +38,23 @@
     <string name="label.timesInADay">ওষুধটি দিনে কয়বার খেতে হবে?</string>
     <string name="label.daysToContinue">কতদিন ধরে এ ওষুধটি আপনাকে খেতে হবে?</string>
     <string name="label.yourComment">আপনার মন্তব্য (যেমন, খাওয়ার আগে/পরে)</string>
+    <string name="label.note">আপনার নোট</string>
     <string name="label.addMedicine">ওষুধ যুক্ত করুন</string>
     <string name="label.alert">অ্যালার্ট</string>
+    <string name="label.upcomingMed">একটু পরে খেতে হবে </string>
+    <string name="label.yes">হ্যাঁ</string>
+    <string name="label.no">না</string>
 
     <string name="error.fieldEmpty">এই জায়গাটি খালি থাকতে পারবে না</string>
+
     <string name="msg.timesADay">বার প্রতিদিন</string>
     <string name="msg.forDays">দিনের জন্য</string>
     <string name="msg.drugAdded">ওষুধ যুক্ত করা হয়েছে</string>
     <string name="msg.alert">এই ওষুধটির জন্য আমাকে অ্যালার্ম দাও</string>
     <string name="msg.medicationTime">ওষুধ খাওয়ার সময় হয়েছে</string>
     <string name="msg.needsToTake">ওষুধ/ওষুধগুলো এখন খেতে হবে</string>
-    <string name="isTheTimeForMedication">সময়ে খেতে হবে এ ওষুধটি</string>
-    <string name="label.note">আপনার নোট</string>
+    <string name="msg.isTheTimeForMedication">সময়ে খেতে হবে এ ওষুধটি</string>
+    <string name="msg.confirmation">আপনি কি নিশ্চিত?</string>
+    <string name="msg.noContent">দেখানোর মত কিছু নেই!</string>
+    <string name="msg.noContentSuggestion">কোন ওষুধ এখনো যুক্ত করা হয় নি। অ্যাপের কার্যক্রম দেখতে ওষুধ যোগ করুন।</string>
 </resources>
