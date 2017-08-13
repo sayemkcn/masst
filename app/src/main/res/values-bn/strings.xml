@@ -48,4 +48,6 @@
     <string name="msg.alert">এই ওষুধটির জন্য আমাকে অ্যালার্ম দাও</string>
     <string name="msg.medicationTime">ওষুধ খাওয়ার সময় হয়েছে</string>
     <string name="msg.needsToTake">ওষুধ/ওষুধগুলো এখন খেতে হবে</string>
+    <string name="isTheTimeForMedication">সময়ে খেতে হবে এ ওষুধটি</string>
+    <string name="label.note">আপনার নোট</string>
 </resources>

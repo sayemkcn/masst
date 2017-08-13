@@ -16,7 +16,6 @@ import xyz.rimon.medicationassistant.R;
 import xyz.rimon.medicationassistant.commons.Logger;
 import xyz.rimon.medicationassistant.core.CoreFragment;
 import xyz.rimon.medicationassistant.domains.Drug;
-import xyz.rimon.medicationassistant.ui.druglist.adapter.DrugListAdapter;
 import xyz.rimon.medicationassistant.ui.home.adapter.HomeAdapter;
 import xyz.rimon.medicationassistant.utils.DateUtils;
 import xyz.rimon.medicationassistant.utils.StorageUtils;
@@ -43,11 +42,14 @@ public class HomeFragment extends CoreFragment {
             Drug drug = drugList.get(i);
             for (int j = 0; j < drug.getTimes().length; j++) {
                 try {
-                    Date date = DateUtils.getTimeFormat12().parse(drug.getTimes()[j]);
-                    String currDateString = DateUtils.getTimeFormat12().format(new Date());
-                    Date currDate = DateUtils.getTimeFormat12().parse(currDateString);
-                    if (date.after(currDate))
-                        newList.add(drug);
+                    Date time = DateUtils.getTimeFormat12().parse(drug.getTimes()[j]);
+                    String currDateTimeString = DateUtils.getTimeFormat12().format(new Date());
+                    Date currTime = DateUtils.getTimeFormat12().parse(currDateTimeString);
+                    // check if medication time is after current time & medication period is not over
+                    // medication period = drug created date + days to take medication
+                    if (time.after(currTime) && !drug.isMedicationOver())
+                        if (!newList.contains(drug)) // if not already added
+                            newList.add(drug);
                 } catch (ParseException e) {
                     Logger.e("getUpcomingMedications()", e.toString());
                 }

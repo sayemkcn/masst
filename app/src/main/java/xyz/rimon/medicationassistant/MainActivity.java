@@ -67,6 +67,7 @@ public class MainActivity extends CoreActivity implements BottomNavigationView.O
         // Start Notification Service
         Intent intent = new Intent(this, NotificationService.class);
         startService(intent);
+
         loadFragment(HomeFragment_.builder().build());
     }
 

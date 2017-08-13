@@ -48,6 +48,7 @@ public class NotificationService extends Service {
                                 if (!drugList.isEmpty()) {
                                     showNotification(drugList);
                                 }
+                                Logger.i("SERVICE_RUNNING", String.valueOf(System.currentTimeMillis()));
                                 Thread.sleep(1000 * 60);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();

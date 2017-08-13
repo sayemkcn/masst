@@ -13,7 +13,7 @@ import org.androidannotations.annotations.ViewById;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import xyz.rimon.medicationassistant.R;
@@ -95,7 +95,7 @@ public class AddDrugFragment extends CoreFragment {
                 spnType.getSelectedItem().toString(),
                 tpSelector.getData(),
                 Integer.parseInt(etDays.getText().toString()),
-                etComment.getText().toString());
+                etComment.getText().toString(), new Date());
         // set alert
         drug.setAlert(this.ckAlert.isChecked());
 

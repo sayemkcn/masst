@@ -54,6 +54,7 @@ public class DrugListAdapter extends RecyclerView.Adapter<DrugListAdapter.MyView
                 + drug.getDaysCount()
                 + " "
                 + context.getResources().getString(R.string.msg_forDays));
+        holder.tvComment.setText(drug.getComment());
         holder.alertSwitch.setChecked(drug.isAlert());
     }
 

@@ -38,6 +38,7 @@
     <string name="label.timesInADay">How many times you\'ve to take in a day?</string>
     <string name="label.daysToContinue">How many days you\'ve to continue this medication?</string>
     <string name="label.yourComment">Your comment (like before/after meal etc.)</string>
+    <string name="label.note">Your note</string>
     <string name="label.addMedicine">Add Medicine</string>
     <string name="label.alert">Alert</string>
 
@@ -49,4 +50,5 @@
     <string name="msg.alert">Give me alert for this medication</string>
     <string name="msg.medicationTime">It\'s time for medication</string>
     <string name="msg.needsToTake">needs to be taken now.</string>
+    <string name="isTheTimeForMedication">is the very next time for this medication.</string>
 </resources>
