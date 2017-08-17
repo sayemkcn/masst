@@ -1,5 +1,7 @@
 package xyz.rimon.medicationassistant.core;
 
+import android.Manifest;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -7,10 +9,20 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.google.android.gms.ads.MobileAds;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.List;
+
 import xyz.rimon.medicationassistant.R;
+import xyz.rimon.medicationassistant.commons.Toaster;
 
 /**
  * Created by SAyEM on 8/11/17.
@@ -24,8 +36,30 @@ public abstract class CoreActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         setTag(this.getClass().getSimpleName());
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            Dexter.withActivity(this)
+                    .withPermissions(
+                            Manifest.permission.INTERNET,
+                            Manifest.permission.ACCESS_NETWORK_STATE,
+                            Manifest.permission.READ_EXTERNAL_STORAGE,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    )
+                    .withListener(new MultiplePermissionsListener() {
+                        @Override
+                        public void onPermissionsChecked(MultiplePermissionsReport report) {
+                            if (!report.areAllPermissionsGranted())
+                                Toaster.showToast(CoreActivity.this.getApplicationContext(),"Storage read/write permission is needed to operate properly!");
+                        }
+
+                        @Override
+                        public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+
+                        }
+                    })
+                    .check();
+        }
     }
 
     /**
@@ -83,6 +117,7 @@ public abstract class CoreActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+        MobileAds.initialize(this,getResources().getString(R.string.admob_app_id));
         EventBus.getDefault().register(this);
     }
 

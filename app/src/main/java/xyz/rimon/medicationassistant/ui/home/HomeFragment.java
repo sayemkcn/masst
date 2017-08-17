@@ -5,6 +5,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.NativeExpressAdView;
+import com.google.android.gms.ads.VideoController;
+import com.google.android.gms.ads.VideoOptions;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
@@ -15,11 +23,13 @@ import java.util.Date;
 import java.util.List;
 
 import xyz.rimon.medicationassistant.R;
+import xyz.rimon.medicationassistant.commons.Commons;
 import xyz.rimon.medicationassistant.commons.Logger;
 import xyz.rimon.medicationassistant.core.CoreFragment;
 import xyz.rimon.medicationassistant.domains.Drug;
 import xyz.rimon.medicationassistant.ui.home.adapter.HomeAdapter;
 import xyz.rimon.medicationassistant.utils.DateUtils;
+import xyz.rimon.medicationassistant.utils.NetworkUtils;
 import xyz.rimon.medicationassistant.utils.StorageUtils;
 
 /**
@@ -34,6 +44,9 @@ public class HomeFragment extends CoreFragment {
     @ViewById
     TextView txtNoItem;
 
+    @ViewById
+    NativeExpressAdView adView;
+
     @AfterViews
     void afterViews() {
         List<Drug> drugList = this.getUpcomingMedications(StorageUtils.readObjects(StorageUtils.ALL_DRUGS_FILE));
@@ -43,6 +56,9 @@ public class HomeFragment extends CoreFragment {
         }
         upcomingMedRecyclerView.setAdapter(new HomeAdapter(getActivity(), drugList));
         upcomingMedRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        // load ads
+        Commons.Ads.loadNativeAds(getActivity(), this.adView);
     }
 
     private List<Drug> getUpcomingMedications(List<Drug> drugList) {
