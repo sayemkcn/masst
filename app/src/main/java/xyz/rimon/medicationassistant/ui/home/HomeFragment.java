@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.NativeExpressAdView;
 import com.google.android.gms.ads.VideoController;
 import com.google.android.gms.ads.VideoOptions;
@@ -22,6 +23,7 @@ import java.util.Date;
 import java.util.List;
 
 import xyz.rimon.medicationassistant.R;
+import xyz.rimon.medicationassistant.commons.Commons;
 import xyz.rimon.medicationassistant.commons.Logger;
 import xyz.rimon.medicationassistant.core.CoreFragment;
 import xyz.rimon.medicationassistant.domains.Drug;
@@ -56,44 +58,7 @@ public class HomeFragment extends CoreFragment {
         upcomingMedRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         // load ads
-        this.loadAds();
-    }
-
-    private void loadAds() {
-        // Set its video options.
-        this.adView.setVideoOptions(new VideoOptions.Builder()
-                .setStartMuted(true)
-                .build());
-
-        // The VideoController can be used to get lifecycle events and info about an ad's video
-        // asset. One will always be returned by getVideoController, even if the ad has no video
-        // asset.
-        final VideoController vc = this.adView.getVideoController();
-        vc.setVideoLifecycleCallbacks(new VideoController.VideoLifecycleCallbacks() {
-            @Override
-            public void onVideoEnd() {
-                Logger.d("ADMOB_VIDEO_CONTROLLER", "Video playback is finished.");
-                super.onVideoEnd();
-            }
-        });
-
-        // Set an AdListener for the AdView, so the Activity can take action when an ad has finished
-        // loading.
-        this.adView.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                if (vc.hasVideoContent()) {
-                    Logger.d("ADMOB", "Received an ad that contains a video asset.");
-                } else {
-                    Logger.d("ADMOB", "Received an ad that does not contain a video asset.");
-                }
-            }
-        });
-        this.adView.loadAd(new AdRequest.Builder().addTestDevice(getResources().getString(R.string.test_device_id_1)).build());
-        // set adview visibility
-        if (NetworkUtils.isConnected(getActivity()))
-            this.adView.setVisibility(View.VISIBLE);
-        else this.adView.setVisibility(View.GONE);
+        Commons.Ads.loadNativeAds(getActivity(), this.adView);
     }
 
     private List<Drug> getUpcomingMedications(List<Drug> drugList) {

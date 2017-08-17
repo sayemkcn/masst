@@ -1,11 +1,22 @@
 package xyz.rimon.medicationassistant.commons;
 
+import android.content.Context;
+import android.view.View;
+
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.NativeExpressAdView;
+import com.google.android.gms.ads.VideoController;
+import com.google.android.gms.ads.VideoOptions;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import xyz.rimon.medicationassistant.R;
 import xyz.rimon.medicationassistant.domains.Drug;
 import xyz.rimon.medicationassistant.utils.DateUtils;
+import xyz.rimon.medicationassistant.utils.NetworkUtils;
 import xyz.rimon.medicationassistant.utils.StorageUtils;
 
 /**
@@ -40,6 +51,48 @@ public class Commons {
                 stringBuilder.append(", ");
         }
         return stringBuilder.toString();
+    }
+
+    public static final class Ads {
+        private Ads() {
+        }
+
+        public static void loadNativeAds(Context context, NativeExpressAdView adView) {
+            // Set its video options.
+            adView.setVideoOptions(new VideoOptions.Builder()
+                    .setStartMuted(true)
+                    .build());
+
+            // The VideoController can be used to get lifecycle events and info about an ad's video
+            // asset. One will always be returned by getVideoController, even if the ad has no video
+            // asset.
+            final VideoController vc = adView.getVideoController();
+            vc.setVideoLifecycleCallbacks(new VideoController.VideoLifecycleCallbacks() {
+                @Override
+                public void onVideoEnd() {
+                    Logger.d("ADMOB_VIDEO_CONTROLLER", "Video playback is finished.");
+                    super.onVideoEnd();
+                }
+            });
+
+            // Set an AdListener for the AdView, so the Activity can take action when an ad has finished
+            // loading.
+            adView.setAdListener(new AdListener() {
+                @Override
+                public void onAdLoaded() {
+                    if (vc.hasVideoContent()) {
+                        Logger.d("ADMOB", "Received an ad that contains a video asset.");
+                    } else {
+                        Logger.d("ADMOB", "Received an ad that does not contain a video asset.");
+                    }
+                }
+            });
+            adView.loadAd(new AdRequest.Builder().addTestDevice(context.getString(R.string.test_device_id_1)).build());
+            // set adview visibility
+            if (NetworkUtils.isConnected(context))
+                adView.setVisibility(View.VISIBLE);
+            else adView.setVisibility(View.GONE);
+        }
     }
 
 }
