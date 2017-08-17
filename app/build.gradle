@@ -18,8 +18,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    repositories {
+        maven {
+            url "https://maven.google.com"
+        }
+    }
 }
-def AAVersion = '4.3.0'
+def AAVersion = '4.3.1'
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -35,4 +40,5 @@ dependencies {
     compile "org.androidannotations:androidannotations-api:$AAVersion"
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.karumi:dexter:4.1.0'
+    compile 'com.google.android.gms:play-services-ads:11.2.0'
 }

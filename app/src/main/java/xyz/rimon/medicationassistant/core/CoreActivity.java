@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.google.android.gms.ads.MobileAds;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -116,6 +117,7 @@ public abstract class CoreActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+        MobileAds.initialize(this,getResources().getString(R.string.admob_app_id));
         EventBus.getDefault().register(this);
     }
 
