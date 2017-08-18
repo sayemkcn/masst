@@ -1,11 +1,13 @@
 package xyz.rimon.medicationassistant.ui.druglist;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.NativeExpressAdView;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -17,6 +19,7 @@ import java.util.List;
 import xyz.rimon.medicationassistant.R;
 import xyz.rimon.medicationassistant.commons.Commons;
 import xyz.rimon.medicationassistant.commons.Logger;
+import xyz.rimon.medicationassistant.core.CoreActivity;
 import xyz.rimon.medicationassistant.core.CoreFragment;
 import xyz.rimon.medicationassistant.domains.Drug;
 import xyz.rimon.medicationassistant.events.DrugUpdatedEvent;
@@ -54,10 +57,20 @@ public class DrugListFragment extends CoreFragment {
 
         // Load ads
         Commons.Ads.loadNativeAds(getActivity(),this.adView);
+
+        // log event
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME,"DRUG_LIST_PAGE");
+        ((CoreActivity)getActivity()).getFirebaseAnalytics().logEvent(FirebaseAnalytics.Event.SELECT_CONTENT,bundle);
     }
 
     @Subscribe
     public void onDrugUpdated(DrugUpdatedEvent event) {
         Logger.i("onDrugUpdated()", event.toString());
+
+        // log event
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME,"UPDATE_DRUG");
+        ((CoreActivity)getActivity()).getFirebaseAnalytics().logEvent(FirebaseAnalytics.Event.SELECT_CONTENT,bundle);
     }
 }

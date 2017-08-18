@@ -1,5 +1,6 @@
 package xyz.rimon.medicationassistant.components;
 
+import android.annotation.SuppressLint;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.support.annotation.Nullable;

@@ -1,9 +1,12 @@
 package xyz.rimon.medicationassistant.ui.adddrug;
 
+import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -111,6 +114,11 @@ public class AddDrugFragment extends CoreFragment {
     public void onDrugAdded(DrugAddedEvent event) {
         ((CoreActivity) getActivity()).loadFragment(DrugListFragment_.builder().build());
         Toaster.showToast(getContext(), getResources().getString(R.string.msg_drugAdded));
+
+        // log event
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME,"DRUG_ADDED");
+        ((CoreActivity)getActivity()).getFirebaseAnalytics().logEvent(FirebaseAnalytics.Event.SELECT_CONTENT,bundle);
     }
 
 }

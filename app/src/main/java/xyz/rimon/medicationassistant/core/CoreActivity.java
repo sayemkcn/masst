@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.google.android.gms.ads.MobileAds;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -31,12 +32,16 @@ import xyz.rimon.medicationassistant.commons.Toaster;
 public abstract class CoreActivity extends AppCompatActivity {
 
     protected String tag;
+    private FirebaseAnalytics firebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setTag(this.getClass().getSimpleName());
+
+        // init firebase
+        this.firebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             Dexter.withActivity(this)
@@ -141,4 +146,7 @@ public abstract class CoreActivity extends AppCompatActivity {
         this.tag = tag;
     }
 
+    public FirebaseAnalytics getFirebaseAnalytics() {
+        return this.firebaseAnalytics;
+    }
 }
