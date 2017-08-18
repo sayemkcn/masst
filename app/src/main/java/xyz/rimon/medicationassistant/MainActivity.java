@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.EActivity;
@@ -69,6 +71,7 @@ public class MainActivity extends CoreActivity implements BottomNavigationView.O
         startService(intent);
 
         loadFragment(HomeFragment_.builder().build());
+
     }
 
     @Override

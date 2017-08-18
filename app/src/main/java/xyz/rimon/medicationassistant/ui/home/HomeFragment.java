@@ -1,5 +1,6 @@
 package xyz.rimon.medicationassistant.ui.home;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -12,6 +13,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.NativeExpressAdView;
 import com.google.android.gms.ads.VideoController;
 import com.google.android.gms.ads.VideoOptions;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -25,6 +27,7 @@ import java.util.List;
 import xyz.rimon.medicationassistant.R;
 import xyz.rimon.medicationassistant.commons.Commons;
 import xyz.rimon.medicationassistant.commons.Logger;
+import xyz.rimon.medicationassistant.core.CoreActivity;
 import xyz.rimon.medicationassistant.core.CoreFragment;
 import xyz.rimon.medicationassistant.domains.Drug;
 import xyz.rimon.medicationassistant.ui.home.adapter.HomeAdapter;
@@ -59,6 +62,11 @@ public class HomeFragment extends CoreFragment {
 
         // load ads
         Commons.Ads.loadNativeAds(getActivity(), this.adView);
+
+        // log event
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME,"HOME_PAGE");
+        ((CoreActivity)getActivity()).getFirebaseAnalytics().logEvent(FirebaseAnalytics.Event.SELECT_CONTENT,bundle);
     }
 
     private List<Drug> getUpcomingMedications(List<Drug> drugList) {

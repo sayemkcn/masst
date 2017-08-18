@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MedicationAssistant</string>
+    <string name="app_name">MedAssistant</string>
     <string name="title_home">প্রচ্ছদ</string>
     <string name="title_druglist">ওষুধগুলো</string>
     <string name="title_add_med">নতুন ওষুধ</string>

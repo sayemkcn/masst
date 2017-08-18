@@ -1,0 +1,138 @@
+{
+  "project_info": {
+    "project_number": "335006572307",
+    "firebase_url": "https://little-apps-1083a.firebaseio.com",
+    "project_id": "little-apps-1083a",
+    "storage_bucket": "little-apps-1083a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:335006572307:android:b752d8129e480d7f",
+        "android_client_info": {
+          "package_name": "net.toracode.sayem.dmeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "335006572307-jg426as22s9tgongfi1qg65ii8ipu4rq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.toracode.sayem.dmeapp",
+            "certificate_hash": "42b674f5263d1857dbdaa8033978d3221d1f3de1"
+          }
+        },
+        {
+          "client_id": "335006572307-jo3vau71vu0cf855uo2r2k2j4vrjt1t1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDag7cwZMfpb7MIndd189nGmncgzDTGqow"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:335006572307:android:f434392b2e646b98",
+        "android_client_info": {
+          "package_name": "sayem.picosoft.ramadancalender"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "335006572307-nrs785dvd018uu4eu51i2rm5mhlccirh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sayem.picosoft.ramadancalender",
+            "certificate_hash": "42b674f5263d1857dbdaa8033978d3221d1f3de1"
+          }
+        },
+        {
+          "client_id": "335006572307-jo3vau71vu0cf855uo2r2k2j4vrjt1t1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDag7cwZMfpb7MIndd189nGmncgzDTGqow"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "335006572307-jo3vau71vu0cf855uo2r2k2j4vrjt1t1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:335006572307:android:7b18790a4f1f90ff",
+        "android_client_info": {
+          "package_name": "xyz.rimon.medicationassistant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "335006572307-rf78cvpevsauo0bl5667dbnb7o5g0358.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "xyz.rimon.medicationassistant",
+            "certificate_hash": "2992fef8edbaedf364663bd3e674eeee69f8716d"
+          }
+        },
+        {
+          "client_id": "335006572307-jo3vau71vu0cf855uo2r2k2j4vrjt1t1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDag7cwZMfpb7MIndd189nGmncgzDTGqow"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "335006572307-jo3vau71vu0cf855uo2r2k2j4vrjt1t1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
