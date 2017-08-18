@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MedAss</string>
+    <string name="app_name">MedAssistant</string>
     <string name="title_home">Home</string>
     <string name="title_druglist">Medicines</string>
     <string name="title_add_med">Add Medicine</string>
