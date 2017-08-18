@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
-import android.util.Log;
 import android.webkit.MimeTypeMap;
 
 import java.io.BufferedReader;
@@ -145,7 +144,7 @@ public class StorageUtils {
             }
         }
 
-        Log.i("MEASUREMENT_LIST_READ", drugList.size() + "");
+        Logger.i("OBJECT_LIST_READ", drugList.size() + "");
         return drugList;
     }
 
@@ -155,7 +154,7 @@ public class StorageUtils {
             drugList = new ArrayList<>();
         drugList.add(drug);
         StorageUtils.writeObjects(fileName, drugList);
-        Log.i("OFFLINE_MEASUREMENTS", String.valueOf(drugList.size()));
+        Logger.i("OFFLINE_OBJECTS", String.valueOf(drugList.size()));
     }
 
     public static void writeObject(String fileName, Drug drug, int position) {
@@ -165,7 +164,7 @@ public class StorageUtils {
         drugList.remove(position);
         drugList.add(position, drug);
         StorageUtils.writeObjects(fileName, drugList);
-        Log.i("OFFLINE_MEASUREMENTS", String.valueOf(drugList.size()));
+        Logger.i("OFFLINE_OBJECTS", String.valueOf(drugList.size()));
     }
 
     public static void openFileIntent(Context context, String dir, String fileName) {
